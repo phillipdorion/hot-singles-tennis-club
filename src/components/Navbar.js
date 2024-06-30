@@ -4,7 +4,10 @@ import { Box, Flex, Link, Button } from '@chakra-ui/react';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout } = useAuth(); // Check if useAuth provides currentUser and logout
+
+  // Log currentUser to debug authentication issues
+  console.log('Current User:', currentUser);
 
   return (
     <Box bg="teal.500" px={4}>
