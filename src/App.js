@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, Box } from '@chakra-ui/react';
+import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import MatchLogging from './components/MatchLogging';
