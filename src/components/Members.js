@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebaseConfig';
-import { collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 function Members() {
   const [members, setMembers] = useState([]);
+  const db = getFirestore();
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -11,7 +11,6 @@ function Members() {
       const membersData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       setMembers(membersData);
     };
-
     fetchMembers();
   }, []);
 
