@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
 function Members() {
   const [members, setMembers] = useState([]);
-  const db = getFirestore();
 
   useEffect(() => {
     const fetchMembers = async () => {
       const querySnapshot = await getDocs(collection(db, 'members'));
-      const membersData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      setMembers(membersData);
+      setMembers(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     };
     fetchMembers();
   }, []);
 
   return (
-    <div>
-      <h1>Members</h1>
-      <ul>
+    <Box maxW="md" mx="auto" mt={8}>
+      <Heading as="h2" size="lg" mb={4}>Members</Heading>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
         {members.map((member) => (
-          <li key={member.id}>
-            {member.name} - {member.skillLevel}
-          </li>
+          <Box key={member.id} p={5} shadow="md" borderWidth="1px">
+            <Text>Name: {member.name}</Text>
+            <Text>Email: {member.email}</Text>
+            <Text>Phone: {member.phone}</Text>
+            <Text>Skill Level: {member.skillLevel}</Text>
+          </Box>
         ))}
-      </ul>
-    </div>
+      </SimpleGrid>
+    </Box>
   );
 }
 

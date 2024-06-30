@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Matchmaking from './components/Matchmaking';
 import MatchLogging from './components/MatchLogging';
 import Members from './components/Members';
 import Profile from './components/Profile';
@@ -22,7 +21,6 @@ function App() {
             <Box p={4}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/matchmaking" element={<Matchmaking />} />
                 <Route path="/matchlogging" element={<MatchLogging />} />
                 <Route path="/members" element={<Members />} />
                 <Route path="/profile" element={<Profile />} />

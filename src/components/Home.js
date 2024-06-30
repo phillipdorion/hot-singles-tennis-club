@@ -15,7 +15,7 @@ function Home() {
     };
 
     const fetchLatestMatches = async () => {
-      const q = query(collection(db, 'matches'), orderBy('date', 'desc'), limit(5));
+      const q = query(collection(db, 'matchResults'), orderBy('date', 'desc'), limit(5));
       const querySnapshot = await getDocs(q);
       setLatestMatches(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     };
@@ -46,9 +46,12 @@ function Home() {
           </Heading>
           <VStack align="stretch" spacing={2}>
             {latestMatches.map((match) => (
-              <Text key={match.id}>
-                {match.player1} vs {match.player2} - {new Date(match.date.toDate()).toLocaleDateString()}
-              </Text>
+              <Box key={match.id}>
+                <Text>{match.player1} vs {match.player2} - {new Date(match.date.toDate()).toLocaleDateString()}</Text>
+                {match.sets.map((set, index) => (
+                  <Text key={index}>Set {index + 1}: {set.player1Score} - {set.player2Score} {set.tiebreaker && `(Tiebreaker: ${set.tiebreaker})`}</Text>
+                ))}
+              </Box>
             ))}
           </VStack>
         </Box>

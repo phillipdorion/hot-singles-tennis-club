@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { auth} from '../firebaseConfig';
+import { auth } from '../firebaseConfig';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 
 function Profile() {
   const [user] = useAuthState(auth);
@@ -28,13 +29,19 @@ function Profile() {
   }
 
   return (
-    <div>
-      <h1>{profile.name}</h1>
-      <p>Skill Level: {profile.skillLevel}</p>
-      <p>Match Availability: {profile.availability}</p>
-      <p>Current Status: {profile.status}</p>
-      {/* Add other profile details as needed */}
-    </div>
+    <Box>
+      <Heading>{profile.name}</Heading>
+      <Text>Skill Level: {profile.skillLevel}</Text>
+      <Text>Match Availability: {profile.availability}</Text>
+      <Text>Current Status: {profile.status}</Text>
+      <VStack spacing={4}>
+        <Heading size="md">Match Insights</Heading>
+        {/* Display match statistics here */}
+        <Text>Total Matches: {profile.totalMatches}</Text>
+        <Text>Wins: {profile.wins}</Text>
+        <Text>Losses: {profile.losses}</Text>
+      </VStack>
+    </Box>
   );
 }
 
