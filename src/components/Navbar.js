@@ -16,9 +16,6 @@ function Navbar() {
         </Box>
 
         <Flex alignItems={'center'}>
-          <Link as={RouterLink} to="/matchmaking" color="white" mr={4}>
-            Matchmaking
-          </Link>
           <Link as={RouterLink} to="/matchlogging" color="white" mr={4}>
             Log Match
           </Link>

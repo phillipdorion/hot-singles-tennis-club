@@ -88,7 +88,9 @@ function MatchLogging() {
               Add Set
             </Button>
           )}
-          <Button type="submit" colorScheme="teal" size="lg" width="full">Log Match Result</Button>
+          <Button type="submit" colorScheme="teal" size="lg" width="full">
+            Log Match Result
+          </Button>
         </VStack>
       </form>
     </Box>
