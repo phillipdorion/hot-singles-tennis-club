@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { db, auth } from '../firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth } from '../firebaseConfig';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Profile() {
   const [user] = useAuthState(auth);
   const [profile, setProfile] = useState(null);
+  const db = getFirestore();
 
   useEffect(() => {
     if (user) {
@@ -18,7 +19,6 @@ function Profile() {
           console.error('No such document!');
         }
       };
-
       fetchProfile();
     }
   }, [user]);
