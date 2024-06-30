@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { db } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 function Matchmaking() {
   const [player1, setPlayer1] = useState('');
   const [player2, setPlayer2] = useState('');
   const [matchDate, setMatchDate] = useState('');
+  const db = getFirestore();
 
   const handleScheduleMatch = async (e) => {
     e.preventDefault();
